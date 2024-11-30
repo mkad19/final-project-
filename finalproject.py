@@ -26,6 +26,8 @@ recipe_2_steps = [
         
         
 ]
+
+recipes = [(recipe_1_ingredients,recipe_1_steps),(recipe_2_ingredients,recipe_2_steps)]
 def user_input():
     print("enter ingredients below")
     print("enter done when finished")
@@ -37,7 +39,27 @@ def user_input():
         ingredients.append(name)
     return ingredients
 
+def has_ingredient(ingredient_list, target_ingredient):
+    found_ingredient = False
+    for ingredient in ingredient_list:
+        if ingredient == target_ingredient:
+            found_ingredient = True
+    return found_ingredient
+
+def find_recipes(ingredients):
+    num_ingredients = [0] * len(recipes)
+    for i in range(len(recipes)):
+        for ingredient in ingredients:
+            found_ingredient = has_ingredient(recipes[i][0], ingredient)
+            if found_ingredient:
+                num_ingredients[i] += 1
+    return num_ingredients
+
+
+
 def main():
     ingredients = user_input()
+    num_ingredients = find_recipes(ingredients)
+    print(num_ingredients)
 
 main()
