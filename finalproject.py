@@ -55,11 +55,27 @@ def find_recipes(ingredients):
                 num_ingredients[i] += 1
     return num_ingredients
 
+def find_max(num_ingredients):
+    max = -1
+    max_index = 0
+    for i in range(len(num_ingredients)):
+        if max > num_ingredients[i]:
+            max = num_ingredients[i]
+            max_index = i
+    return max_index
+
+def display_recipe(num_ingredients):
+    max_index = find_max(num_ingredients)
+    print("ingredients:")
+    print(recipes[max_index][0])
+    print("steps:")
+    print(recipes[max_index][1])
+
 
 
 def main():
     ingredients = user_input()
     num_ingredients = find_recipes(ingredients)
-    print(num_ingredients)
+    display_recipe(num_ingredients)
 
 main()
